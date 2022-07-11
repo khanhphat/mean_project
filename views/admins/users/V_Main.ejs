@@ -1,0 +1,96 @@
+<div class="">
+    <div class="page-title">
+        <div class="title_left">
+            <h3>Danh Mục
+                <small>
+                    <a href="" class="btn btn-round btn-primary btn-sm">
+                        <span class="glyphicon glyphicon-plus"></span> Thêm</a></small>
+            </h3>
+        </div>
+
+        <div class="title_right">
+            <div class="col-md-5 col-sm-5   form-group pull-right top_search">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search for...">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">Go!</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div class="x_content">
+
+        <div class="table-responsive">
+            <table class="table table-striped jambo_table bulk_action">
+                <thead>
+                    <tr class="headings">
+                        <th>
+                            <input type="checkbox" id="check-all" class="flat">
+                        </th>
+                        <th class="column-title">Invoice </th>
+                        <th class="column-title">Invoice Date </th>
+                        <th class="column-title">Order </th>
+                        <th class="column-title">Bill to Name </th>
+                        <th class="column-title">Status </th>
+                        <th class="column-title">Amount </th>
+                        <th class="column-title no-link last">
+                            Chức Năng
+                        </th>
+                        <th class="bulk-actions" colspan="7">
+                            <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span
+                                    class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
+                        </th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <% for(var i=0; i < 10; i++){ %>
+                        <tr class="even pointer">
+                            <td class="a-center ">
+                                <input type="checkbox" class="flat" name="table_records">
+                            </td>
+                            <td class=" ">121000040</td>
+                            <td class=" ">May 23, 2014 11:47:56 PM </td>
+                            <td class=" ">121000210 <i class="success fa fa-long-arrow-up"></i></td>
+                            <td class=" ">John Blank L</td>
+                            <td class=" ">Paid</td>
+                            <td class="a-right a-right ">$7.45</td>
+                            <td class=" last">
+                                <a href="/" class="btn btn-info btn-sm">
+                                    <span class="glyphicon glyphicon-edit"></span> Sửa</a>
+                                <button type="button" class="btn btn-danger btn-sm">
+                                    <span class="glyphicon glyphicon-trash"></span> Xóa</button>
+                            </td>
+                        </tr>
+                        <% } %>
+                </tbody>
+            </table>
+            <div class="dataTables_paginate paging_simple_numbers" id="datatable-buttons_paginate">
+                <ul class="pagination">
+                    <li class="paginate_button previous disabled" id="datatable-buttons_previous"><a href="#"
+                            aria-controls="datatable-buttons" data-dt-idx="0" tabindex="0">Previous</a></li>
+                    <li class="paginate_button active"><a href="#" aria-controls="datatable-buttons" data-dt-idx="1"
+                            tabindex="0">1</a></li>
+                    <li class="paginate_button "><a href="#" aria-controls="datatable-buttons" data-dt-idx="2"
+                            tabindex="0">2</a></li>
+                    <li class="paginate_button "><a href="#" aria-controls="datatable-buttons" data-dt-idx="3"
+                            tabindex="0">3</a></li>
+                    <li class="paginate_button "><a href="#" aria-controls="datatable-buttons" data-dt-idx="4"
+                            tabindex="0">4</a></li>
+                    <li class="paginate_button "><a href="#" aria-controls="datatable-buttons" data-dt-idx="5"
+                            tabindex="0">5</a></li>
+                    <li class="paginate_button "><a href="#" aria-controls="datatable-buttons" data-dt-idx="6"
+                            tabindex="0">6</a></li>
+                    <li class="paginate_button next" id="datatable-buttons_next"><a href="#"
+                            aria-controls="datatable-buttons" data-dt-idx="7" tabindex="0">Next</a></li>
+                </ul>
+            </div>
+        </div>
+
+
+    </div>
+</div>

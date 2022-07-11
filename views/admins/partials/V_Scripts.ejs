@@ -1,0 +1,113 @@
+<% if(popupDelete==1){ %>
+<!-- popup -->
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel2">Xóa dữ liệu</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Bạn chắc chắn muốn xóa?</p>
+                <b><span id="name" class="text-danger"></span></b>
+                <input type="hidden" id="idXoa">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="_delete('<%=nameModule%>')">Xóa</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
+            </div>
+        </div>
+    </div>
+</div>
+<% } %>
+<!-- jQuery -->
+<script src="/admins/vendors/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="/admins/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<!-- FastClick -->
+<script src="/admins/vendors/fastclick/lib/fastclick.js"></script>
+<!-- NProgress -->
+<script src="/admins/vendors/nprogress/nprogress.js"></script>
+<!-- Chart.js -->
+<script src="/admins/vendors/Chart.js/dist/Chart.min.js"></script>
+<!-- gauge.js -->
+<script src="/admins/vendors/gauge.js/dist/gauge.min.js"></script>
+<!-- bootstrap-progressbar -->
+<script src="/admins/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+<!-- iCheck -->
+<script src="/admins/vendors/iCheck/icheck.min.js"></script>
+<!-- Skycons -->
+<script src="/admins/vendors/skycons/skycons.js"></script>
+<!-- Flot -->
+<script src="/admins/vendors/Flot/jquery.flot.js"></script>
+<script src="/admins/vendors/Flot/jquery.flot.pie.js"></script>
+<script src="/admins/vendors/Flot/jquery.flot.time.js"></script>
+<script src="/admins/vendors/Flot/jquery.flot.stack.js"></script>
+<script src="/admins/vendors/Flot/jquery.flot.resize.js"></script>
+<!-- Flot plugins -->
+<script src="/admins/vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+<script src="/admins/vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
+<script src="/admins/vendors/flot.curvedlines/curvedLines.js"></script>
+<!-- DateJS -->
+<script src="/admins/vendors/DateJS/build/date.js"></script>
+<!-- JQVMap -->
+<script src="/admins/vendors/jqvmap/dist/jquery.vmap.js"></script>
+<script src="/admins/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+<script src="/admins/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
+<!-- bootstrap-daterangepicker -->
+<script src="/admins/vendors/moment/min/moment.min.js"></script>
+<script src="/admins/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+
+<!-- Custom Theme Scripts -->
+<script src="/admins/build/js/custom.min.js"></script>
+
+<!-- Gọi class Admin, Categories, Products -->
+<script src="/admins/scripts/Admin.js"></script>
+<script src="/admins/scripts/Categories.js"></script>
+<script src="/admins/scripts/Products.js"></script>
+
+<!-- xử lý form -->
+<script>
+    // Gọi class Admin ra sử dụng
+    const use_Admin = new Admin();
+    const use_Categories = new Categories();
+    const use_Products = new Products();
+
+    function openPopup(id='', name='') {
+        // Gọi hàm openPopup
+        use_Admin._openPopup(id, name);
+    }
+
+    function _delete(url='') {
+        // Gọi hàm xóa
+        use_Admin._delete(url);
+    }
+
+    function ChangeToSlug() {
+        // Gọi hàm xóa
+        use_Admin._ChangeToSlug();
+    }
+
+    $(document).ready(function () {
+        $('#Form').on('submit', function (e) {
+            e.preventDefault();
+
+            var module = '<%=nameModule%>';
+
+            var kq ='';
+
+            // Xét
+            if(module == 'categories')
+            {
+                kq = use_Categories.processForm(processForm)
+            }
+            else if(module == 'products')
+            {
+                kq = use_Products.processForm(processForm)
+            }
+        })
+    })
+</script>
