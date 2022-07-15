@@ -5,6 +5,7 @@ const categoryModel = mongoose.Schema({
     name: { type: String, require: true, unique: true },
     slug: { type: String, require: true,  unique: true },
     parents: { type: mongoose.Types.ObjectId, default: null },
+    idUsers: { type: mongoose.Types.ObjectId, default: null },
     status: { type: Boolean, default: true },
     trash: { type: Boolean, default: false },
     date_created: { type: Date, default: Date.now() },

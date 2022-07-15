@@ -3,6 +3,7 @@ const router = express.Router()
 
 // Gọi class
 const C_Admin = require('../class/C_Admin')
+const C_Html = require('../class/C_Html')
 const C_Products = require('../class/C_Products')
 const C_Categories = require('../class/C_Categories')
 
@@ -10,13 +11,47 @@ const C_Categories = require('../class/C_Categories')
 const productModel = require('../models/M_Products')
 const categoryModel = require('../models/M_Categories')
 
-router.get('/index', (req, res)=>{
+router.get('/index(/:pageNumber)?', async (req, res)=>{
+    var obj_search = {}
+
+    // check ?
+    if(req.originalUrl.indexOf('?')!=-1){
+        // Có search
+        // ?s=abc: lấy dữ liệu từ đường link dùng query
+
+        obj_search = { "name": { $regex: '.*' + req.query.s + '.*' }}
+    }
+
     // Sử dụng class C_Admin
     var use_C_Admin = new C_Admin(req.originalUrl)
 
+    // Sử dụng class C_Html
+    var use_C_Html = new C_Html(req.originalUrl)
+
+    // Phân trang
+    let pageNumber = req.params.pageNumber
+    let limit = 2
+
+    var skip;
+
+    if(pageNumber == undefined || pageNumber == 1){
+        skip=0
+    }
+    else{
+        // 0 2 4 6 8 10
+        skip = (pageNumber-1) * limit
+    }
+
+    // Lấy danh sách tổng sản phẩm và tính ra tổng số trang
+    var data_array = await productModel.find()
+    var sumData = data_array.length
+    var sumPage = Math.ceil( sumData / limit )
+
     productModel
-    .find()
+    .find(obj_search)
     .sort({_id: -1})
+    .limit(limit)
+    .skip(skip)
     .exec((err, data)=>{
         if(err){
             res.send({kq:0, results: 'Kết nối Database thất bại'})
@@ -42,7 +77,8 @@ router.get('/index', (req, res)=>{
             res.render('admins/V_index', {
                 V_Main, table, 
                 nameModule: use_C_Admin.get_name_module(),
-                popupDelete: 1
+                popupDelete: 1,
+                pagination: use_C_Html.html_pagination(sumPage, pageNumber)
             })
         }
     })

@@ -5,6 +5,7 @@ const productModel = mongoose.Schema({
     name: { type: String, require: true, unique: true },
     slug: { type: String, require: true,  unique: true },
     parents: { type: mongoose.Types.ObjectId, default: null },
+    idUsers: { type: mongoose.Types.ObjectId, default: null },
     avatar: { type: String, default: null },
     status: { type: Boolean, default: true },
     trash: { type: Boolean, default: false },
